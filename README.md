@@ -2,5 +2,5 @@
 
 A graded game project that is meant to be published to Steam
 
-first commit
+first commit bogdan
 first commit valeria
