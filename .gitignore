@@ -1,7 +1,7 @@
-SteamPublishedGameProject/Library/
-SteamPublishedGameProject/Temp/
-SteamPublishedGameProject/Obj/
-SteamPublishedGameProject/.vs/
+Library/
+Temp/
+Obj/
+UserSettings/
 
 .vs/
 *.csproj
