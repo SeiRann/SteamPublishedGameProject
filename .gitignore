@@ -1,0 +1,14 @@
+Library/
+Temp/
+Obj/
+UserSettings/
+
+.vs/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+
+.DS_Store
+Thumbs.db
