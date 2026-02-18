@@ -1,0 +1,14 @@
+SteamPublishedGameProject/Library/
+SteamPublishedGameProject/Temp/
+SteamPublishedGameProject/Obj/
+SteamPublishedGameProject/.vs/
+
+.vs/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+
+.DS_Store
+Thumbs.db
