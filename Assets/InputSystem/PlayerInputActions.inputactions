@@ -122,6 +122,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleDraw",
+                    "type": "Button",
+                    "id": "fc1a1a81-fcae-4b49-9cab-9178870b99dd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -133,6 +142,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Scan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c71a85f7-3c0a-474a-bc45-552b12ba53b1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleDraw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
