@@ -109,6 +109,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "PlayerAbilities",
+            "id": "bce3b44a-d73c-4827-b890-0c5e1497b585",
+            "actions": [
+                {
+                    "name": "Scan",
+                    "type": "Button",
+                    "id": "119d4d47-3b57-41ef-8711-2ba3ab4d2d4b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2acff793-72fd-4056-bed2-2d04cdd794ae",
+                    "path": "<Keyboard>/l",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

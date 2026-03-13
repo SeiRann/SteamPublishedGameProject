@@ -73,7 +73,7 @@ namespace PDollarGestureRecognizer
 
             currentGestureLineRenderer.positionCount = ++vertexCount;
             currentGestureLineRenderer.SetPosition(vertexCount - 1, Camera.main.ScreenToWorldPoint(new Vector3(virtualKeyPosition.x, virtualKeyPosition.y, 10)));
-        }
+		}
 
 		private void SetupPlatformTouch() {
             if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer)
@@ -158,5 +158,5 @@ namespace PDollarGestureRecognizer
 				newGestureName = "";
 			}
 		}
-	}
-}
+			}
+		}
