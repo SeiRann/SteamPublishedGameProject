@@ -1,0 +1,8 @@
+:root {
+}
+
+.header {
+    font-size: 40px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}

@@ -4,28 +4,35 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using UnityEngine.UI;
 
-#if UNITY_EDITOR
-using UnityEditor;
-using System.Net;
-#endif
+
 
 public class PlayerAbilityScript : MonoBehaviour
 {
     public bool canScan = true;
     public bool canDraw = true;
+    public GameObject DrawUI;
+
+    private VisualElement drawUIRoot;
+
     public static List<Renderer> scannableObjects = new List<Renderer>();
-    UIDocument DrawGui;
     FirstPersonController playerController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        DrawGui = GetComponent<UIDocument>();
-        Debug.Log(DrawGui);
+        drawUIRoot = DrawUI.GetComponentInChildren<UIDocument>().rootVisualElement;
+        initializeDrawUI();
+ 
         playerController = GetComponent<FirstPersonController>();
+
     }
+
+    //For some reason the MainContainer Display starts as Null instead of None??
+    private void initializeDrawUI() {
+        drawUIRoot.Q("MainContainer").style.display = DisplayStyle.None;
+    }
+
 
     public void Scan(InputAction.CallbackContext context) {
 
@@ -40,19 +47,20 @@ public class PlayerAbilityScript : MonoBehaviour
     }
 
     public void toggleDrawing(InputAction.CallbackContext context) {
+        VisualElement mainContainer = drawUIRoot.Q("MainContainer");
 
         if (canDraw && context.performed) {
-            Debug.Log("toggled drawing");   
+            Debug.Log("toggled drawing" + mainContainer.style.display);
 
-            DrawGui.enabled = !DrawGui.enabled;
+            if (mainContainer.style.display == DisplayStyle.None) {
 
-            if(DrawGui.enabled == true)
-            {
+                mainContainer.style.display = DisplayStyle.Flex;
                 UnityEngine.Cursor.lockState = CursorLockMode.None;
                 playerController.cameraCanMove = false;
-            }
-            else
+
+            }else
             {
+                mainContainer.style.display = DisplayStyle.None;
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 playerController.cameraCanMove = true;
             }
