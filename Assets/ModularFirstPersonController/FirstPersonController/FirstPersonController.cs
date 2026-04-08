@@ -205,8 +205,8 @@ public class FirstPersonController : MonoBehaviour
         #region Camera
 
         // Control camera movement
-        if(cameraCanMove)
-        {
+        if (!cameraCanMove) return;
+        
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
             if (!invertCamera)
@@ -224,7 +224,7 @@ public class FirstPersonController : MonoBehaviour
 
             transform.localEulerAngles = new Vector3(0, yaw, 0);
             playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
-        }
+        
 
         #region Camera Zoom
 
