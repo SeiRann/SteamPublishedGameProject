@@ -375,7 +375,11 @@ MonoBehaviour:
   playerCameraPoint: {fileID: 2564290805318549473}
   moveSpeed: 1
   jumpForce: 5
+  horizontalSensitivity: 5
+  lookSmoothTime: 1
+  pitch: 0
   moveReference: {fileID: -1315516348140376663, guid: 2397c3d52f8361041bdeb28102c8582f, type: 3}
+  mouseReference: {fileID: 0}
 --- !u!114 &5116793247467573161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +425,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 398e7719-6988-4397-92ff-b51acc1cfb4e
     m_ActionName: 'Player/Forward[/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 12dbe4d3-5afe-4cdc-9df3-22e4167f1c5f
+    m_ActionName: 'Player/Look[/Mouse/delta]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

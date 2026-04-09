@@ -15,15 +15,16 @@ public class ControllerScript : MonoBehaviour
     public float moveSpeed = 1f;
     public float jumpForce = 5f;
     private PlayerCollisionScript collisionScript;
-    public float horizontalSensitivity = 5f;
+    public float horizontalSensitivity = 0.0001f;
 
     public float lookSmoothTime = 1f;
 
     private Vector2 currentLook;
     private Vector2 lookVelocity;
 
-    public float yaw;
-    public float pitch;
+    private float pitch;
+    public float maxPitch;
+    public float minPitch;  
 
 
     public InputActionReference moveReference;
@@ -60,8 +61,27 @@ public class ControllerScript : MonoBehaviour
 
         //Camera Positioning and Rotation
         playerCamera.transform.position = playerCameraPoint.transform.position;
-        playerCamera.transform.rotation = playerCameraPoint.transform.rotation;
-        player.Rotate(0, _mouseDirection.x/10, 0);
+        
+        //// Base rotation from camera point
+        Quaternion baseRotation = playerCameraPoint.transform.rotation;
+
+        //// Mouse input
+        float mouseX = _mouseDirection.x * horizontalSensitivity;
+        float mouseY = _mouseDirection.y * horizontalSensitivity;
+
+        Debug.Log(mouseX);
+        Debug.Log(horizontalSensitivity);
+
+        //// Yaw (player rotates)
+        player.Rotate(0, mouseX, 0);
+
+        //// Pitch (camera only)
+        pitch -= mouseY;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        //// Combine base rotation + pitch
+        playerCamera.transform.rotation = baseRotation * Quaternion.Euler(pitch, 0f, 0f);
+        //playerCamera.transform.Rotate(_mouseDirection.y, 0, 0);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
