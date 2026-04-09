@@ -128,7 +128,7 @@ public class ControllerScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(isSprinting);
+        //Debug.Log(isSprinting);
         if (!isSprinting)
         {
             Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed;

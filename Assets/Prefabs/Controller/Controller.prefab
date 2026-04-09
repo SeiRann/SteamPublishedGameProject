@@ -310,7 +310,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &1293568053945748667
 MonoBehaviour:
@@ -377,7 +377,11 @@ MonoBehaviour:
   jumpForce: 5
   horizontalSensitivity: 5
   lookSmoothTime: 1
-  pitch: 0
+  maxPitch: 0
+  minPitch: 0
+  sprintBoost: 0
+  baseFOV: 0
+  sprintFOV: 0
   moveReference: {fileID: -1315516348140376663, guid: 2397c3d52f8361041bdeb28102c8582f, type: 3}
   mouseReference: {fileID: 0}
 --- !u!114 &5116793247467573161
@@ -429,6 +433,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 12dbe4d3-5afe-4cdc-9df3-22e4167f1c5f
     m_ActionName: 'Player/Look[/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e9c90434-14b8-44df-909b-d78729935c94
+    m_ActionName: 'Player/Sprint[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -15,13 +15,14 @@ public class PlayerAbilityScript : MonoBehaviour
 
     private VisualElement drawUIRoot;
     private VisualElement drawArea;
-
-    public static List<Renderer> scannableObjects = new List<Renderer>();
-    FirstPersonController playerController;
+    
+    
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        //Debug.Log("ability script");
         drawUIRoot = DrawUI.GetComponentInChildren<UIDocument>().rootVisualElement;
         UnityEngine.Cursor.visible = true;
         //Debug.Log(drawUIRoot);
@@ -29,7 +30,7 @@ public class PlayerAbilityScript : MonoBehaviour
         drawArea = drawUIRoot.Q("DrawArea");
         //Debug.Log(drawArea);
 
-        playerController = GetComponent<FirstPersonController>();
+        
 
     }
 
@@ -41,10 +42,10 @@ public class PlayerAbilityScript : MonoBehaviour
 
     public void Scan(InputAction.CallbackContext context) {
 
+            //Debug.Log("used scan");
         if (canScan && context.performed)
         {
-            Debug.Log("used scan");
-            foreach(Renderer scannableObject in scannableObjects)
+            foreach(Renderer scannableObject in PlayerCollisionScript.scannableObjects)
             {
                 scannableObject.material.color = Color.yellow;
             }
@@ -74,23 +75,7 @@ public class PlayerAbilityScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Scannable")
-        {
-            scannableObjects.Add(other.GetComponent<Renderer>());
-            //Debug.Log(scannableObjects.Count);
-        }
-    }
-
-    private void OnTriggerExit(Collider other) 
-    {
-        if(other.tag == "Scannable")
-        {
-            scannableObjects.Remove(other.GetComponent<Renderer>());
-            //Debug.Log(scannableObjects.Count);
-        }
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -101,7 +86,7 @@ public class PlayerAbilityScript : MonoBehaviour
 
     private void Start()
     {
-        playerController.enabled = false;
+        //playerController.enabled = false;
 
 
         drawArea.RegisterCallback<MouseMoveEvent>(evt =>
