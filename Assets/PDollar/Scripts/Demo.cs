@@ -8,26 +8,30 @@ namespace PDollarGestureRecognizer
 {
 	public class Demo : MonoBehaviour
 	{
-		public Transform gestureOnScreenPrefab;
+		//Gesture Logic
+		public Transform gestureOnScreenPrefab; //The line renderer used to draw lines
+		private List<LineRenderer> gestureLinesRenderer = new List<LineRenderer>();
+		private LineRenderer currentGestureLineRenderer;
+
+		//Logic
 
 		private List<Gesture> trainingSet = new List<Gesture>();
+		private Vector3 virtualKeyPosition = Vector2.zero;
 
 		private List<Point> points = new List<Point>();
 		private int strokeId = -1;
 
-		private Vector3 virtualKeyPosition = Vector2.zero;
-		private Rect drawArea;
-
-		private RuntimePlatform platform;
 		private int vertexCount = 0;
 
-		private List<LineRenderer> gestureLinesRenderer = new List<LineRenderer>();
-		private LineRenderer currentGestureLineRenderer;
+		private RuntimePlatform platform;
+
 
 		//GUI
 		private string message;
 		private bool recognized;
 		private string newGestureName = "";
+		
+		private Rect drawArea;
 
 		void Start()
 		{
@@ -97,25 +101,25 @@ namespace PDollarGestureRecognizer
 
 			SetupPlatformTouch();
 
-			if (drawArea.Contains(virtualKeyPosition))
+			if (drawArea.Contains(virtualKeyPosition)) // Check if pointer is in the area
 			{
-				if (Input.GetMouseButtonDown(0))
+				if (Input.GetMouseButtonDown(0))	//Check if it was pressed
 				{
 					if (recognized)
 					{
-						ResetGestures();
+						ResetGestures();	//If the gesture got recognize reset the canvas
 					}
 
-					++strokeId;
+					++strokeId;		//Add another stroke identifier
+					 
+					RenderAndAddLine();	//Draw the line and add it to the gesture set
 
-					RenderAndAddLine();
-
-					vertexCount = 0;
+					vertexCount = 0; //Reset the vertex count
 				}
 
 				if (Input.GetMouseButton(0))
 				{
-					AddAndResetPoint();
+					AddAndResetPoint(); // just add points and then count its positioncount
 				}
 			}
 		}

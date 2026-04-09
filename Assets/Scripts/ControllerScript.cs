@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class ControllerScript : MonoBehaviour
 {
+    public bool cameraMovement = true; 
+
     private Rigidbody rb;
     private Transform player;
 
@@ -59,9 +61,6 @@ public class ControllerScript : MonoBehaviour
 
     }
 
-    private void ChangeFOV(float newFOV) { 
-        playerCamera.fieldOfView = newFOV;   
-    }
 
     public void Sprint(InputAction.CallbackContext ctx) { 
         //change FOV
@@ -82,35 +81,42 @@ public class ControllerScript : MonoBehaviour
         }
     }
 
-   
+    private void MoveCamera() {
+        if (cameraMovement)
+        {
+            _mouseDirection = mouseReference.action.ReadValue<Vector2>();
+
+            //Camera Positioning and Rotation
+            playerCamera.transform.position = playerCameraPoint.transform.position;
+
+            //// Base rotation from camera point
+            Quaternion baseRotation = playerCameraPoint.transform.rotation;
+
+            //// Mouse input
+            float mouseX = _mouseDirection.x * horizontalSensitivity;
+            float mouseY = _mouseDirection.y * horizontalSensitivity;
+
+
+
+            //// Yaw (player rotates)
+            player.Rotate(0, mouseX, 0);
+
+            //// Pitch (camera only)
+            pitch -= mouseY;
+            pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+            //// Combine base rotation + pitch
+            playerCamera.transform.rotation = baseRotation * Quaternion.Euler(pitch, 0f, 0f);
+        }
+    }
+
 
     private void Update()
     {
+        MoveCamera();
+
         _moveDirection = moveReference.action.ReadValue<Vector2>();
-        _mouseDirection = mouseReference.action.ReadValue<Vector2>();
-
-        //Camera Positioning and Rotation
-        playerCamera.transform.position = playerCameraPoint.transform.position;
         
-        //// Base rotation from camera point
-        Quaternion baseRotation = playerCameraPoint.transform.rotation;
-
-        //// Mouse input
-        float mouseX = _mouseDirection.x * horizontalSensitivity;
-        float mouseY = _mouseDirection.y * horizontalSensitivity;
-
-        
-
-        //// Yaw (player rotates)
-        player.Rotate(0, mouseX, 0);
-
-        //// Pitch (camera only)
-        pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
-
-        //// Combine base rotation + pitch
-        playerCamera.transform.rotation = baseRotation * Quaternion.Euler(pitch, 0f, 0f);
-        //playerCamera.transform.Rotate(_mouseDirection.y, 0, 0);
         
 
         //Camera FOV
