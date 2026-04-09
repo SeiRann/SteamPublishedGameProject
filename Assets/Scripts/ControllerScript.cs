@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 
 public class ControllerScript : MonoBehaviour
 {
-    public bool cameraMovement = true; 
+    public bool cameraMovement = true;
+    public bool playerMovement = true;
 
     private Rigidbody rb;
     private Transform player;
@@ -132,20 +133,31 @@ public class ControllerScript : MonoBehaviour
 
     }
 
-   
+   private void PlayerMove()
+    {
+        if (playerMovement)
+        {
+            if (!isSprinting)
+            {
+                Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed;
+                rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+            }
+            else
+            {
+                Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed * sprintBoost;
+                rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+            }
+        } else
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         //Debug.Log(isSprinting);
-        if (!isSprinting)
-        {
-            Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed;
-            rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
-        } else
-        {
-            Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed*sprintBoost;
-            rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
-        }
+        PlayerMove();
 
     }
 

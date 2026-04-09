@@ -105,6 +105,7 @@ public class PlayerAbilityScript : MonoBehaviour
             {
                 isDrawing = true;
                 controllerScript.cameraMovement = false;
+                controllerScript.playerMovement = false;
                 mainContainer.style.display = DisplayStyle.Flex;
                 UnityEngine.Cursor.lockState = CursorLockMode.None;
                 UnityEngine.Cursor.visible = true;
@@ -114,6 +115,7 @@ public class PlayerAbilityScript : MonoBehaviour
                 ResetGestures();
                 isDrawing = false;
                 controllerScript.cameraMovement = true;
+                controllerScript.playerMovement = true;
                 mainContainer.style.display = DisplayStyle.None;
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
