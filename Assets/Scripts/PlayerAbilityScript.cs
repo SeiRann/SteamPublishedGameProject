@@ -29,9 +29,6 @@ public class PlayerAbilityScript : MonoBehaviour
         initializeDrawUI();
         drawArea = drawUIRoot.Q("DrawArea");
         //Debug.Log(drawArea);
-
-        
-
     }
 
     //For some reason the MainContainer Display starts as Null instead of None??
@@ -63,14 +60,11 @@ public class PlayerAbilityScript : MonoBehaviour
                 mainContainer.style.display = DisplayStyle.Flex;
                 UnityEngine.Cursor.lockState = CursorLockMode.None;
                 UnityEngine.Cursor.visible = true;
-                //playerController.cameraCanMove = false;
-
             }else
             {
                 mainContainer.style.display = DisplayStyle.None;
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
-                //playerController.cameraCanMove = true;
             }
         }
     }
@@ -84,14 +78,5 @@ public class PlayerAbilityScript : MonoBehaviour
         drawArea.style.backgroundColor = Color.red;
     }
 
-    private void Start()
-    {
-        //playerController.enabled = false;
-
-
-        drawArea.RegisterCallback<MouseMoveEvent>(evt =>
-        {
-            Debug.Log("Mouse moving over draw area");
-        });
-    }
+    
 }

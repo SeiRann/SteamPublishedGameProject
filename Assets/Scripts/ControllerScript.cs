@@ -43,9 +43,11 @@ public class ControllerScript : MonoBehaviour
         //Debug.Log(rb);
         playerCamera = GetComponentInChildren<Camera>();
         collisionScript = GetComponentInChildren<PlayerCollisionScript>();
-        
-        
+    }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Jump(InputAction.CallbackContext ctx) {
@@ -109,7 +111,7 @@ public class ControllerScript : MonoBehaviour
         //// Combine base rotation + pitch
         playerCamera.transform.rotation = baseRotation * Quaternion.Euler(pitch, 0f, 0f);
         //playerCamera.transform.Rotate(_mouseDirection.y, 0, 0);
-        Cursor.lockState = CursorLockMode.Locked;
+        
 
         //Camera FOV
         sprintFOV = Mathf.Clamp(sprintFOV, baseFOV, sprintFOV);
