@@ -462,7 +462,7 @@ PrefabInstance:
       objectReference: {fileID: 2309626158139408484, guid: 2397c3d52f8361041bdeb28102c8582f, type: 3}
     - target: {fileID: 6427840942425224873, guid: 5b025ff1ae765ad49b18c1cf6a41807c, type: 3}
       propertyPath: horizontalSensitivity
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7611644806331115213, guid: 5b025ff1ae765ad49b18c1cf6a41807c, type: 3}
       propertyPath: m_LocalRotation.w

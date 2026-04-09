@@ -24,7 +24,13 @@ public class ControllerScript : MonoBehaviour
 
     private float pitch;
     public float maxPitch;
-    public float minPitch;  
+    public float minPitch;
+
+    public float sprintBoost;
+    public float baseFOV;
+    public float sprintFOV;
+
+    private bool isSprinting=false;
 
 
     public InputActionReference moveReference;
@@ -51,6 +57,28 @@ public class ControllerScript : MonoBehaviour
 
     }
 
+    private void ChangeFOV(float newFOV) { 
+        playerCamera.fieldOfView = newFOV;   
+    }
+
+    public void Sprint(InputAction.CallbackContext ctx) { 
+        //change FOV
+        //make player go fast
+
+        if (ctx.performed)
+        {
+
+            isSprinting = true;
+            
+        }
+
+        if (ctx.canceled)
+        {
+            //go normal speed
+            isSprinting = false;
+            
+        }
+    }
 
    
 
@@ -69,8 +97,7 @@ public class ControllerScript : MonoBehaviour
         float mouseX = _mouseDirection.x * horizontalSensitivity;
         float mouseY = _mouseDirection.y * horizontalSensitivity;
 
-        Debug.Log(mouseX);
-        Debug.Log(horizontalSensitivity);
+        
 
         //// Yaw (player rotates)
         player.Rotate(0, mouseX, 0);
@@ -83,15 +110,36 @@ public class ControllerScript : MonoBehaviour
         playerCamera.transform.rotation = baseRotation * Quaternion.Euler(pitch, 0f, 0f);
         //playerCamera.transform.Rotate(_mouseDirection.y, 0, 0);
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Camera FOV
+        sprintFOV = Mathf.Clamp(sprintFOV, baseFOV, sprintFOV);
+        if (isSprinting && playerCamera.fieldOfView < sprintFOV)
+        {
+            playerCamera.fieldOfView += 0.5f;
+        } else if (playerCamera.fieldOfView > baseFOV)
+        {
+            playerCamera.fieldOfView -= 0.5f;
+        }
+        
+
     }
 
    
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed;
-        rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+        Debug.Log(isSprinting);
+        if (!isSprinting)
+        {
+            Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed;
+            rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+        } else
+        {
+            Vector3 move = (player.right * _moveDirection.x + player.forward * _moveDirection.y) * moveSpeed*sprintBoost;
+            rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+        }
 
     }
+
+    
 }
