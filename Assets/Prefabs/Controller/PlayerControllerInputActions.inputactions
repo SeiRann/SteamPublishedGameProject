@@ -52,6 +52,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Bridge",
+                    "type": "Button",
+                    "id": "759b0aac-fc0b-40a4-8f65-d524e8951631",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ToggleDrawing",
                     "type": "Button",
                     "id": "1b8bce3c-f9ee-4bc9-b369-ab1f450f7a2d",
@@ -189,6 +198,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Recognize",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f287b1c4-5cd3-4585-a4fb-e0e544e6178d",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bridge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

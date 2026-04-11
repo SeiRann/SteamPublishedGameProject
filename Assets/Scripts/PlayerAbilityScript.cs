@@ -17,6 +17,7 @@ public class PlayerAbilityScript : MonoBehaviour
 
     public bool canScan = true;
     public bool canDraw = true;
+    public bool canBridge = true;
 
     private bool isDrawing;
 
@@ -76,6 +77,25 @@ public class PlayerAbilityScript : MonoBehaviour
         }
     }
 
+    public void InputBridge(InputAction.CallbackContext context)
+    {
+        Debug.Log("used bridge");
+        if (canBridge && context.performed)
+        {
+            Bridge();
+        }
+    }
+
+    public void Bridge() { 
+        foreach(Collider bridgeObject in PlayerCollisionScript.bridgeObjects)
+        {
+            bridgeObject.isTrigger = false;
+            Debug.Log(bridgeObject.transform);
+            bridgeObject.transform.GetComponent<Renderer>().material.color = Color.blue ;
+        }
+        stopDrawing();
+    }
+
     public void Scan()
     {
 
@@ -84,6 +104,8 @@ public class PlayerAbilityScript : MonoBehaviour
             {
                 scannableObject.material.color = Color.yellow;
             }
+
+            stopDrawing();
     }
 
 
@@ -204,6 +226,9 @@ public class PlayerAbilityScript : MonoBehaviour
                 {
                     case "Scan":
                         Scan();
+                        break;
+                    case "Bridge":
+                        Bridge();
                         break;
 
                     default:

@@ -7,10 +7,11 @@ public class PlayerCollisionScript : MonoBehaviour
 
     public bool isGrounded;
     public static List<Renderer> scannableObjects = new List<Renderer>();
+    public static List<Collider> bridgeObjects = new List<Collider>();
     void OnCollisionStay(Collision collision)
     {
         //Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Bridge"))
         {
             isGrounded = true;
         }
@@ -18,7 +19,7 @@ public class PlayerCollisionScript : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Bridge"))
         {
             isGrounded = false;
         }
@@ -26,20 +27,38 @@ public class PlayerCollisionScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("trigger");
-        if (other.tag == "Scannable")
+                Debug.Log(other.tag);
+        switch (other.tag)
         {
-            scannableObjects.Add(other.GetComponent<Renderer>());
-            //Debug.Log(scannableObjects.Count);
+            case "Scannable":
+                scannableObjects.Add(other.GetComponent<Renderer>());
+                break;
+
+            case "Bridge":
+                bridgeObjects.Add(other.GetComponent<Collider>());
+                break;
         }
+
+        Debug.Log(bridgeObjects.Count);
+
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Scannable")
+        Debug.Log(other.tag);
+
+        switch (other.tag)
         {
-            scannableObjects.Remove(other.GetComponent<Renderer>());
-            //Debug.Log(scannableObjects.Count);
+            case "Scannable":
+                scannableObjects.Remove(other.GetComponent<Renderer>());
+                break;
+
+            case "Bridge":
+                bridgeObjects.Remove(other.GetComponent<Collider>());
+                break;
         }
+        Debug.Log(bridgeObjects.Count);
+
     }
 }
