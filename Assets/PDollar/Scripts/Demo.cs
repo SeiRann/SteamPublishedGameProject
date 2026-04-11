@@ -139,8 +139,17 @@ namespace PDollarGestureRecognizer
 				Gesture candidate = new Gesture(points.ToArray());
 				Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
 
-				message = gestureResult.GestureClass + " " + gestureResult.Score;
-			}
+				Debug.Log(gestureResult.Score * 10);
+
+				if(gestureResult.Score*100 >= 90)
+				{
+                    message = gestureResult.GestureClass + " " + gestureResult.Score;
+                } else
+				{
+                    message = "Not Good enough"+gestureResult.GestureClass + " " + gestureResult.Score;
+
+                }
+            }
 
 
 			//Add Gesture Setup
@@ -151,6 +160,7 @@ namespace PDollarGestureRecognizer
 			//Add Gesture and Store Gesture
 			if (GUI.Button(new Rect(Screen.width - 50, 150, 50, 30), "Add") && points.Count > 0 && newGestureName != "")
 			{
+				Debug.Log(Application.persistentDataPath);
 				string fileName = String.Format("{0}/{1}-{2}.xml", Application.persistentDataPath, newGestureName, DateTime.Now.ToFileTime());
 
 #if !UNITY_WEBPLAYER
