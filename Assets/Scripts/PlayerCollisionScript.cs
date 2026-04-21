@@ -27,7 +27,7 @@ public class PlayerCollisionScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-                Debug.Log(other.tag);
+                //Debug.Log(other.tag);
         switch (other.tag)
         {
             case "Scannable":
@@ -39,14 +39,14 @@ public class PlayerCollisionScript : MonoBehaviour
                 break;
         }
 
-        Debug.Log(bridgeObjects.Count);
+        //Debug.Log(bridgeObjects.Count);
 
         
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.tag);
+        //Debug.Log(other.tag);
 
         switch (other.tag)
         {
@@ -58,7 +58,7 @@ public class PlayerCollisionScript : MonoBehaviour
                 bridgeObjects.Remove(other.GetComponent<Collider>());
                 break;
         }
-        Debug.Log(bridgeObjects.Count);
+        //Debug.Log(bridgeObjects.Count);
 
     }
 }
