@@ -2,6 +2,6 @@
 
 A graded game project that is meant to be published to Steam
 
-first commit bogdan 2
-first commit valeria
-first commit alex
+### This is a Pull Request Demo
+
+Dana commit Demo 2
