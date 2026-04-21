@@ -6,6 +6,7 @@ Library/
 Temp/
 Obj/
 UserSettings/
+Logs/
 
 .vs/
 *.csproj
