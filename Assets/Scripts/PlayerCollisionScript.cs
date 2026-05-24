@@ -6,7 +6,7 @@ public class PlayerCollisionScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public bool isGrounded;
-    public static List<Renderer> scannableObjects = new List<Renderer>();
+    public static List<IScannable> scannableObjects = new List<IScannable>();
     public static List<Collider> bridgeObjects = new List<Collider>();
     void OnCollisionStay(Collision collision)
     {
@@ -31,7 +31,7 @@ public class PlayerCollisionScript : MonoBehaviour
         switch (other.tag)
         {
             case "Scannable":
-                scannableObjects.Add(other.GetComponent<Renderer>());
+                scannableObjects.Add(other.GetComponentInParent<IScannable>());
                 break;
 
             case "Bridge":
@@ -40,8 +40,9 @@ public class PlayerCollisionScript : MonoBehaviour
         }
 
         //Debug.Log(bridgeObjects.Count);
+        //Debug.Log(scannableObjects.Count);
 
-        
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -51,7 +52,7 @@ public class PlayerCollisionScript : MonoBehaviour
         switch (other.tag)
         {
             case "Scannable":
-                scannableObjects.Remove(other.GetComponent<Renderer>());
+                scannableObjects.Remove(other.GetComponentInParent<IScannable>());
                 break;
 
             case "Bridge":
@@ -59,6 +60,7 @@ public class PlayerCollisionScript : MonoBehaviour
                 break;
         }
         //Debug.Log(bridgeObjects.Count);
+        //Debug.Log(scannableObjects.Count);
 
     }
 }

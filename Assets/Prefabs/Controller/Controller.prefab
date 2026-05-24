@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1944812526760911959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5849272630812002016}
+  m_Layer: 0
+  m_Name: ObjectEquipPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5849272630812002016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944812526760911959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.135, y: 0, z: 2.318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7611644806331115213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2564290805318549473
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +234,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6355319949953951175}
+  - {fileID: 5849272630812002016}
   m_Father: {fileID: 3022299167870558961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3633635062498193233
@@ -372,6 +404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31142eba5b4b80941b806ac2f530d4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  cameraMovement: 1
+  playerMovement: 1
   playerCameraPoint: {fileID: 2564290805318549473}
   moveSpeed: 1
   jumpForce: 5
@@ -437,6 +471,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e9c90434-14b8-44df-909b-d78729935c94
     m_ActionName: 'Player/Sprint[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d94c362e-92fd-4d78-b4ec-76e141ac781f
+    m_ActionName: 'Player/Scan[/Keyboard/l]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 759b0aac-fc0b-40a4-8f65-d524e8951631
+    m_ActionName: 'Player/Bridge[/Keyboard/b]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1b8bce3c-f9ee-4bc9-b369-ab1f450f7a2d
+    m_ActionName: 'Player/ToggleDrawing[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b15ff872-17a6-4681-9e43-3fce083cfadf
+    m_ActionName: 'Player/Recognize[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 84d63682-49d7-489c-a777-7d87cb767b6a
+    m_ActionName: 'Player/Interact[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
