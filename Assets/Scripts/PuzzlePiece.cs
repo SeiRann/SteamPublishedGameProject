@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour, IScannable, IPlayerInteractable
 {
+    public int PieceCode;
+
     Renderer cubeRenderer;
     public bool puzzle = true;
 
