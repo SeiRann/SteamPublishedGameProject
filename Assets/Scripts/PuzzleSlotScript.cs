@@ -13,14 +13,18 @@ public class PuzzleSlotScript : MonoBehaviour, IPlayerInteractable, IScannable
         if (player.isEquipped && player.EquippedObject.GetComponentInParent<PuzzlePiece>())
         {
             puzzlePiece = player.UnEquip();
-            Debug.Log("unequipped");
+            //Debug.Log("unequipped");
             puzzlePiece.transform.SetParent(puzzleSlotPoint);
             puzzlePiece.transform.position = puzzleSlotPoint.transform.position;
-            puzzlePiece.transform.rotation = Quaternion.identity;
+            puzzlePiece.transform.localPosition -= new Vector3(0f, 0f, 0.38f); //Either models are shit or the positioning of the attachment point is shit
+            puzzlePiece.transform.rotation = puzzleSlotPoint.transform.rotation;
+            puzzlePiece.transform.Rotate(0,0,90);
             puzzlePiece.transform.localScale = puzzlePiece.transform.localScale * 2;
             checkCodes(puzzlePiece.GetComponentInParent<PuzzlePiece>());
         }
-        Debug.Log(puzzleSlotPoint);
+        //Debug.Log(puzzleSlotPoint);
+
+        Debug.Log("Piece rotation:"+puzzlePiece.transform.rotation+" Slot Point rotation:"+puzzleSlotPoint.transform.rotation);
     }
 
 
@@ -28,7 +32,7 @@ public class PuzzleSlotScript : MonoBehaviour, IPlayerInteractable, IScannable
     {
         if (obj.PieceCode == SlotCode)
         {
-            Debug.Log("Is matching");
+            //Debug.Log("Is matching");
             MatchingCodes = true;
         }else
         {

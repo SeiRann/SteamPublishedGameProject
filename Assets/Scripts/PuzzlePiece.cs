@@ -22,7 +22,7 @@ public class PuzzlePiece : MonoBehaviour, IScannable, IPlayerInteractable
     public void Interact(PlayerInteractorScript player) {
         player.Equip(this.gameObject);
         
-        Debug.Log(GetInteractionText());
+        //Debug.Log(GetInteractionText());
     }
 
     public string GetInteractionText() {

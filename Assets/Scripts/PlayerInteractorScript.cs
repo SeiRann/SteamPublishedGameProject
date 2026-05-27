@@ -57,18 +57,18 @@ public class PlayerInteractorScript : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext ctx)
     {
-        if (!PlayerAbilityScript.isDrawing && ctx.performed)
+        if (!PlayerAbilityScript.isDrawing && ctx.performed && PlayerAbilityScript.abilities.Contains(Ability.canInteract))
         {
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
             if(Physics.Raycast(ray, out RaycastHit hit, interactRange, interactLayer))
             {
-                Debug.Log("hit something");
+                //Debug.Log("hit something");
                 IPlayerInteractable interactable = hit.collider.GetComponentInParent<IPlayerInteractable>();
 
                 if(interactable != null)
                 {
-                    Debug.Log("Interacted with interactable");
+                    //Debug.Log("Interacted with interactable");
                     interactable.Interact(this);
                 }
             }

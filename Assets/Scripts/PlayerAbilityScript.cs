@@ -9,15 +9,12 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 
-
 public class PlayerAbilityScript : MonoBehaviour
 {
     public ControllerScript controllerScript;
     public Camera PlayerCamera;
 
-    public bool canScan = true;
-    public bool canDraw = true;
-    public bool canBridge = true;
+    public static List<Ability> abilities = new List<Ability>(); 
 
     public static bool isDrawing = false;
 
@@ -55,23 +52,31 @@ public class PlayerAbilityScript : MonoBehaviour
         string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.xml");
         foreach (string filePath in filePaths)
             trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
+
+        GrantAbility(Ability.canInteract);
+        //GrantAbility(Ability.canDraw);
+        //GrantAbility(Ability.canScan);
+
     }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    private void Awake()
     {
         UnityEngine.Cursor.visible = true;
     }
 
-  
+
+    public void GrantAbility(Ability grantedAbility) { 
+        abilities.Add(grantedAbility);
+    }
 
 
     public void InputScan(InputAction.CallbackContext context)
     {
 
         //Debug.Log("used scan");
-        if (canScan && context.performed)
+        if (abilities.Contains(Ability.canScan) && context.performed)
         {
             Scan();
         }
@@ -80,7 +85,7 @@ public class PlayerAbilityScript : MonoBehaviour
     public void InputBridge(InputAction.CallbackContext context)
     {
         Debug.Log("used bridge");
-        if (canBridge && context.performed)
+        if (abilities.Contains(Ability.canBridge) && context.performed)
         {
             Bridge();
         }
@@ -105,7 +110,7 @@ public class PlayerAbilityScript : MonoBehaviour
     public void toggleDrawing(InputAction.CallbackContext context)
     {
 
-        if (canDraw && context.performed)
+        if (abilities.Contains(Ability.canDraw) && context.performed)
         {
 
             if (!isDrawing)
