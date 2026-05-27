@@ -19,7 +19,7 @@ public class PlayerAbilityScript : MonoBehaviour
     public bool canDraw = true;
     public bool canBridge = true;
 
-    private bool isDrawing;
+    public static bool isDrawing = false;
 
     // Gesture Logic
     public Transform gestureOnScreenPrefab; //The line renderer used to draw lines
@@ -86,26 +86,18 @@ public class PlayerAbilityScript : MonoBehaviour
         }
     }
 
-    public void Bridge() { 
-        foreach(Collider bridgeObject in PlayerCollisionScript.bridgeObjects)
-        {
-            bridgeObject.isTrigger = false;
-            Debug.Log(bridgeObject.transform);
-            bridgeObject.transform.GetComponent<Renderer>().material.color = Color.blue ;
-        }
-        stopDrawing();
+
+    public void Bridge() {
+        PlayerInteractorScript.BridgeObjects();
+        
     }
 
     public void Scan()
     {
 
-        //Debug.Log("used scan");
-            foreach (Renderer scannableObject in PlayerCollisionScript.scannableObjects)
-            {
-                scannableObject.material.color = Color.yellow;
-            }
 
-            stopDrawing();
+        PlayerInteractorScript.ScanObjects();
+
     }
 
 
@@ -211,7 +203,7 @@ public class PlayerAbilityScript : MonoBehaviour
     {
 
         //Debug.Log("Recognize");
-        if (ctx.performed)
+        if (ctx.performed && isDrawing)
         {
             recognized = true;
 
@@ -243,6 +235,7 @@ public class PlayerAbilityScript : MonoBehaviour
             }
 
         }
+        stopDrawing();
     }
 
     public void AddGesture(InputAction.CallbackContext ctx)

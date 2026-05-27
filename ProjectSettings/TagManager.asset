@@ -7,11 +7,14 @@ TagManager:
   - Ground
   - Bridge
   - Scannable
+  - Interactable
+  - Ability
+  - Equippable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interact
   - Water
   - UI
   - 
