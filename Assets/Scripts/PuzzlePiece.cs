@@ -3,12 +3,15 @@ using UnityEngine;
 public class PuzzlePiece : MonoBehaviour, IScannable, IPlayerInteractable
 {
     public int PieceCode;
+    public Texture SymbolImage;
+    public GameObject Symbol;
 
     Renderer cubeRenderer;
     public bool puzzle = true;
 
     void Awake() { 
         cubeRenderer = GetComponentInChildren<Renderer>();
+        Symbol.GetComponent<Renderer>().material.mainTexture = SymbolImage;
     }
     public void Scan() {
         cubeRenderer.material.color = Color.yellow;

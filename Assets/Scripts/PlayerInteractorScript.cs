@@ -36,7 +36,7 @@ public class PlayerInteractorScript : MonoBehaviour
 
             obj.transform.SetParent(ObjectEquipPoint);
             obj.transform.position = ObjectEquipPoint.transform.position;
-            obj.transform.rotation = ObjectEquipPoint.transform.rotation;
+            //obj.transform.rotation = ObjectEquipPoint.transform.rotation;
             obj.transform.localScale = obj.transform.localScale / 2;
             obj.GetComponentInChildren<Collider>().isTrigger = true;
 
