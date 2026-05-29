@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,7 @@ public class PlayerInteractorScript : MonoBehaviour
         isEquipped = false;
 
         GameObject tempEquipped = EquippedObject;
+        tempEquipped.GetComponentInChildren<Collider>().isTrigger = false;
 
         EquippedObject = null;
 
@@ -36,6 +38,8 @@ public class PlayerInteractorScript : MonoBehaviour
             obj.transform.position = ObjectEquipPoint.transform.position;
             obj.transform.rotation = ObjectEquipPoint.transform.rotation;
             obj.transform.localScale = obj.transform.localScale / 2;
+            obj.GetComponentInChildren<Collider>().isTrigger = true;
+
 
             Rigidbody rb = obj.GetComponent<Rigidbody>();
 
