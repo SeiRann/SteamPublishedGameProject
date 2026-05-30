@@ -10,7 +10,7 @@ public class ControllerScript : MonoBehaviour
     private Rigidbody rb;
     private Transform player;
 
-    private Camera playerCamera;
+    public Camera playerCamera;
     public GameObject playerCameraPoint;
 
     private Vector2 _moveDirection;
@@ -80,6 +80,16 @@ public class ControllerScript : MonoBehaviour
             isSprinting = false;
             
         }
+    }
+
+    public void LockCamera()
+    {
+        cameraMovement = false;
+    }
+
+    public void UnlockCamera()
+    {
+        cameraMovement = true;
     }
 
     private void MoveCamera() {
